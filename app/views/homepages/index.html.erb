@@ -2,17 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Jonathan Passé</title>
+    <title>Beau's Website</title>
   </head>
   <body>
-    <div class='Title'>
-      Jonathan Passé
-    </div><br>
-    <div class='Art_links'>
-      <a href='#'>Drawings</a><br>
-      <a href='#'>Paintings</a><br>
-      <a href='#'>Printmakings</a><br>
-    </div><br>
+    <div class='nav'>
+      <ul>
+        <li><a href='/artpieces/drawings'>DRAWINGS</a></li>
+        <li><a href='/artpieces/paintings'>PAINTINGS</a></li>
+        <li><a href='/artpieces/printmakings'>PRINTMAKINGS</a></li>
+      </ul>
+    </div>
 
+    <div class='homepage_picture'>
+      <%= image_tag @homepage_picture.image.url(:medium), class: 'main_picture' %>
+    </div>
   </body>
 </html>

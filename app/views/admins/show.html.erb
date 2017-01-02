@@ -31,7 +31,7 @@
             <div class='art'>
               <%= artpiece.title %><br>
               <%= image_tag artpiece.image.url(:thumb), class: 'image' %>
-              <%= link_to 'delete', artpieces_path(id: artpiece.id), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+              <%= link_to 'delete', artpieces_path(id: artpiece.id), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, class: 'button' %>
             </div>
           <% end %>
         <% end %>

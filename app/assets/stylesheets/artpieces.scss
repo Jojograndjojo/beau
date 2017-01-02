@@ -1,3 +1,27 @@
 // Place all the styles related to the artpieces controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+  position: relative;
+  top: 50px;
+  display: flex;
+  flex-direction: row-reverse;;
+  flex-grow: 2;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.image {
+
+}
+
+.left_arrow {
+ color: white;
+ background-color: black;
+}
+
+.right_arrow {
+
+
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Printmakings</title>
+  </head>
+  <body>
+    <div class='printmakings'>
+    <% @printmakings.each do |printmaking| %>
+        <%= image_tag printmaking.image.url(:thumb), class: 'image' %>
+        <%= printmaking.title %><br>
+    <% end %>
+    </div>
+  </body>
+</html>

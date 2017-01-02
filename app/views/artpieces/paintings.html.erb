@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Paintings</title>
+  </head>
+  <body>
+    <div class='paintings'>
+      <% @paintings.each do |painting| %>
+          <%= image_tag painting.image.url(:thumb), class: 'image' %>
+          <%= painting.title %><br>
+      <% end %>
+    </div>
+  </body>
+</html>

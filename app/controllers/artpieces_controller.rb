@@ -11,6 +11,18 @@ class ArtpiecesController < ApplicationController
     redirect_to admins_path
   end
 
+  def drawings
+    @drawings = Artpiece.where(type_of_art: 'Drawing')
+  end
+
+  def paintings
+    @paintings = Artpiece.where(type_of_art: 'Painting')
+  end
+
+  def printmakings
+    @printmakings = Artpiece.where(type_of_art: 'Printmaking')
+  end
+
   private
 
   def artpiece_params
