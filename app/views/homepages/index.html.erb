@@ -2,19 +2,35 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Beau's Website</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Beau Rouse</title>
+    <style media="screen">
+    .container-fluid {
+      width: 100%;
+    }
+
+    .img-responsive {
+      margin:auto;
+    }
+    </style>
+
   </head>
   <body>
-    <div class='nav'>
-      <ul>
-        <li><a href='/artpieces/drawings'>DRAWINGS</a></li>
-        <li><a href='/artpieces/paintings'>PAINTINGS</a></li>
-        <li><a href='/artpieces/printmakings'>PRINTMAKINGS</a></li>
-      </ul>
-    </div>
+    <div class="container">
 
-    <div class='homepage_picture'>
-      <%= image_tag @homepage_picture.image.url(:medium), class: 'main_picture' %>
-    </div>
+        <div class='homepage_picture'>
+          <% if @homepage_picture != nil %>
+          <%= image_tag @homepage_picture.image.url(:medium), class: 'img-responsive' %>
+          <% end %>
+        </div>
+      </div>
+
+      <span class="fa fa-instagram"></span>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

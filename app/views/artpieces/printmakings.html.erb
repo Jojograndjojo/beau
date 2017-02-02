@@ -2,14 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Printmakings</title>
+
+    <style media="screen">
+      .carousel-inner {
+        background-color: grey;
+      }
+
+      .carousel-inner > .item > img,
+      .carousel-inner > .item > a > img{
+      width: 50%;
+      max-height: inherit;
+      margin: auto;
+      }
+
+      .printmaking_title {
+        margin: auto;
+        width: 50%;
+        text-align: center;
+      }
+
+    </style>
   </head>
+
   <body>
-    <div class='printmakings'>
-    <% @printmakings.each do |printmaking| %>
-        <%= image_tag printmaking.image.url(:thumb), class: 'image' %>
-        <%= printmaking.title %><br>
-    <% end %>
+
+    <div id="printmakingsCarousel" class="carousel slide" data-wrap="false" >
+
+      <div class="carousel-inner" role="listbox">
+        <% @printmakings.each do |printmaking| %>
+          <div class="item <%= 'active' if printmaking == @printmakings[0] %>">
+            <%= image_tag printmaking.image.url, class: 'img-responsive' %>
+            <p class="printmaking_title"><%= printmaking.title %></p>
+
+          </div>
+        <% end %>
+      </div>
+
+      <a class="left carousel-control" href="#printmakingsCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#printmakingsCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

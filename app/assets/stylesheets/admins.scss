@@ -1,12 +1,28 @@
 .uploading_form {
+  display: flex;
+}
+
+.all_art {
+  display: flex;
+  flex-direction: column;
 
 }
 
-.artpieces {
+.artType {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.artName {
 
 }
 
 .art {
+  display: grid;
+  flex-direction: column;
 
 }
 
@@ -14,5 +30,11 @@
 .image {
 
 }
-//
-//
+
+.button {
+
+}
+
+.table, td, th {
+  border: 1px solid black;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div class='user_form'>
+      <%= form_for :user, url: '/users' do |form| %>
+      <%= form.label :username %>
+      <%= form.text_field :username %>
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
+      <%= form.submit 'Submit' %>
+      <% end %>
+    </div>
+
+  </body>
+</html>

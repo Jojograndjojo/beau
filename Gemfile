@@ -29,12 +29,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'paperclip', '~> 5.0.0'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'bootstrap-sass'
+
+
 
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl'
 end
 
 group :development, :test do

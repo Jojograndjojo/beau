@@ -2,14 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Paintings</title>
+
+    <style media="screen">
+      .carousel-inner {
+        background-color: grey;
+      }
+
+      .carousel-inner > .item > img,
+      .carousel-inner > .item > a > img{
+      width: 50%;
+      max-height: inherit;
+      margin: auto;
+      }
+
+      .painting_title {
+        margin: auto;
+        width: 50%;
+        text-align: center;
+      }
+
+    </style>
   </head>
+
   <body>
-    <div class='paintings'>
-      <% @paintings.each do |painting| %>
-          <%= image_tag painting.image.url(:thumb), class: 'image' %>
-          <%= painting.title %><br>
-      <% end %>
+
+    <div id="paintingsCarousel" class="carousel slide" data-wrap="false" >
+
+      <div class="carousel-inner" role="listbox">
+        <% @paintings.each do |painting| %>
+          <div class="item <%= 'active' if painting == @paintings[0] %>">
+            <%= image_tag painting.image.url, class: 'img-responsive' %>
+            <p class="painting_title"><%= painting.title %></p>
+
+          </div>
+        <% end %>
+      </div>
+
+      <a class="left carousel-control" href="#paintingsCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#paintingsCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
