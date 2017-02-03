@@ -8,31 +8,52 @@
 
     <title>Beau Rouse</title>
     <style media="screen">
-    .container-fluid {
-      width: 100%;
+    .container {
+      padding-top: 10px;
+      max-height: 100%;
     }
 
     .img-responsive {
       margin:auto;
     }
 
+    .sidebar-nav {
+      list-style: none;
+    }
 
+    button {
+     background:none;
+     border:none;
+     padding:0;
+     cursor: pointer;
+     font-size: 10px;
+    }
+
+    button:hover {
+      border-bottom:1px solid #444;
+    }
+
+    .artistname {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .art_title {
+      text-align: center;
+      background-color: #f9f4e5;
+    }
     </style>
-
 
   </head>
   <body>
 
-
-
-
     <div class="container">
       <div class="row">
 
-        <div class="col-lg-2 col-md-2">
+        <div class="col-lg-2 col-md-2 col-s-2">
           <div class="sidebar-wrapper">
             <ul class="sidebar-nav">
-              <li><a href="/">Beau Rouse</a></li>
+              <li><button class="artistname">Beau Rouse</button></li>
               <li><button  class="paintings">Paintings</button></li>
               <li><button  class="drawings">Drawings</button></li>
               <li><button  class="printmakings">Printmaking</button></li>
@@ -41,31 +62,53 @@
           </div>
         </div>
 
-          <div class="col-lg-9 col-md-9 offset-lg-1 offset-md-1">
-            <div id="paintings" style="display:none">
-              <% @paintings.each do |painting| %>
-                <%= image_tag painting.image.url, class: 'img-responsive' %>
-                <p class="painting_title"><%= painting.title %></p>
-              <% end %>
-            </div>
+        <div class="col-lg-9 col-md-9 col-s-2 offset-lg-1 offset-md-1 offset-s-1">
+          <div class="artpieces" id="artistname">
+            <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
           </div>
+
+          <div class="artpieces" id="paintings" style="display:none">
+            <% @paintings.each do |painting| %>
+              <%= image_tag painting.image.url, class: 'img-responsive' %>
+              <p class="art_title"><%= painting.title %></p>
+            <% end %>
+          </div>
+
+          <div class="artpieces" id="drawings" style="display:none">
+            <% @drawings.each do |drawing| %>
+              <%= image_tag drawing.image.url, class: 'img-responsive' %>
+              <p class="art_title"><%= drawing.title %></p>
+            <% end %>
+          </div>
+
+          <div class="artpieces" id="printmakings" style="display:none">
+            <% @printmakings.each do |printmaking| %>
+              <%= image_tag printmaking.image.url, class: 'img-responsive' %>
+              <p class="art_title"><%= printmaking.title %></p>
+            <% end %>
+          </div>
+        </div>
 
       </div>
     </div>
 
+    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
     <script>
       var buttonClass;
       $(document).ready(function(){
+
         $("button").click(function() {
+          $(".artpieces").hide(1000);
           buttonClass = $(this).attr("class");
-          console.log(buttonClass);
-          $("#" + buttonClass).show();
+          $("#" + buttonClass).show(1100);
         });
+
+
       });
     </script>
-
-
   </body>
 </html>

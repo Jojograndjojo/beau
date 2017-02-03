@@ -2,13 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+
+    <style media="screen">
+      .container {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        padding-top: 100px;
+        background-color: #f9f4e5;
+      }
+
+
+    </style>
   </head>
   <body>
-    <%= form_tag login_admins_path do %>
-      Username: <%= text_field_tag :username %>
-      Password: <%= password_field_tag :password %>
-      <%= submit_tag 'Log in' %>
-    <% end %>
+    <div class="container">
+      <%= form_tag login_admins_path, html: {class:"form-horizontal"} do %>
+         <%= text_field_tag :username, placeholder="Username"%>
+         <%= password_field_tag :password, placeholder="Password" %>
+        <%= submit_tag 'Log in', class:"btn btn-default" %>
+      <% end %>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
