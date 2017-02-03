@@ -15,22 +15,57 @@
     .img-responsive {
       margin:auto;
     }
+
+
     </style>
+
 
   </head>
   <body>
+
+
+
+
     <div class="container">
+      <div class="row">
 
-        <div class='homepage_picture'>
-          <% if @homepage_picture != nil %>
-          <%= image_tag @homepage_picture.image.url(:medium), class: 'img-responsive' %>
-          <% end %>
+        <div class="col-lg-2 col-md-2">
+          <div class="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li><a href="/">Beau Rouse</a></li>
+              <li><button  class="paintings">Paintings</button></li>
+              <li><button  class="drawings">Drawings</button></li>
+              <li><button  class="printmakings">Printmaking</button></li>
+              <li><button  class="about">About</button></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <span class="fa fa-instagram"></span>
+          <div class="col-lg-9 col-md-9 offset-lg-1 offset-md-1">
+            <div id="paintings" style="display:none">
+              <% @paintings.each do |painting| %>
+                <%= image_tag painting.image.url, class: 'img-responsive' %>
+                <p class="painting_title"><%= painting.title %></p>
+              <% end %>
+            </div>
+          </div>
+
+      </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+      var buttonClass;
+      $(document).ready(function(){
+        $("button").click(function() {
+          buttonClass = $(this).attr("class");
+          console.log(buttonClass);
+          $("#" + buttonClass).show();
+        });
+      });
+    </script>
+
+
   </body>
 </html>

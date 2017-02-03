@@ -8,7 +8,7 @@
 
     <style media="screen">
       .carousel-inner {
-        background-color: grey;
+        background-color: white;
       }
 
       .carousel-inner > .item > img,
@@ -16,6 +16,7 @@
       width: 50%;
       max-height: inherit;
       margin: auto;
+
       }
 
       .drawing_title {
@@ -29,7 +30,16 @@
 
   <body>
 
-    <div id="drawingsCarousel" class="carousel slide" data-wrap="false" >
+    <div class="col-lg-4 col-md-4 col-s-12 col-xs-12">
+      <% @drawings.each do |drawing| %>
+        <div class="item <%= 'active' if drawing == @drawings[0] %>">
+          <%= image_tag drawing.image.url(:large), class: 'img-responsive' %>
+          <p class="drawing_title"><%= drawing.title %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- <div id="drawingsCarousel" class="carousel slide" data-wrap="false" >
 
       <div class="carousel-inner" role="listbox">
         <% @drawings.each do |drawing| %>
@@ -46,7 +56,7 @@
       <a class="right carousel-control" href="#drawingsCarousel" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
-    </div>
+    </div> -->
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

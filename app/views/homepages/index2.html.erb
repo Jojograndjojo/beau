@@ -4,44 +4,62 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+
     <title>Beau Rouse</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style media="screen">
+    .container-fluid {
+      width: 100%;
+    }
+
+    .img-responsive {
+      margin:auto;
+    }
+
+    </style>
+
+    <script>
+      $(document).ready(function(){
+          $(".paintings").click(function(){
+              $("#paintings").toggle();
+          });
+      });
+    </script>
 
   </head>
-  <body crossrider_data_store_temp="{}" data-pinterest-extension-installed="cr2.0.5">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
+  <body>
+    <div class="container">
+      <div class="row">
 
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+        <div class="col-lg-2 col-md-2">
+          <div class="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li><a href="/">Beau Rouse</a></li>
+              <li><a href='#' class="paintings">Paintings</a></li>
+              <li><a href='#'>Drawings</a></li>
+              <li><a href='#'>Printmaking</a></li>
+              <li><a href="#">About</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href='/artpieces/drawings'>DRAWINGS</a></li>
-            <li><a href='/artpieces/paintings'>PAINTINGS</a></li>
-            <li><a href='/artpieces/printmakings'>PRINTMAKINGS</a></li>
-            <li><a href="#">ART CV</a></li>
-            <li><a href="#">ABOUT</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+          <div class="col-lg-9 col-md-9 offset-lg-1 offset-md-1">
+            <div id="paintings">
+              <% @paintings.each do |painting| %>
+                <%= image_tag painting.image.url, class: 'img-responsive' %>
+                <p class="painting_title"><%= painting.title %></p>
+              <% end %>
+            </div>
+          </div>
 
-    <div class='container'>
-      <div class='homepage_picture'>
-        <% if @homepage_picture != nil %>
-        <%= image_tag @homepage_picture.image.url(:medium), class: 'main_picture' %>
-        <% end %>
       </div>
     </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
 
   </body>
 </html>
