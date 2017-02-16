@@ -20,10 +20,12 @@ feature 'admin' do
     log_in
     fill_in 'Title', with: 'Flowers'
     fill_in 'Type of art', with: 'Drawing'
+    select '2017', from: 'Year'
     attach_file 'Image', 'public/img/flowerspainting.jpg'
     click_button 'Upload Art Piece'
     expect(page).to have_css("img[src*='flowerspainting']")
     expect(page).to have_content 'Flowers'
+    expect(Artpiece.all.size).to eq 1
   end
 
   it 'shows paintings that have been uploaded' do
@@ -31,6 +33,7 @@ feature 'admin' do
     log_in
     fill_in 'Title', with: 'Flowers'
     fill_in 'Type of art', with: 'Painting'
+    select '2017', from: 'Year'
     attach_file 'Image', 'public/img/flowerspainting.jpg'
     click_button 'Upload Art Piece'
     expect(page).to have_css("img[src*='flowerspainting']")
@@ -42,6 +45,7 @@ feature 'admin' do
     log_in
     fill_in 'Title', with: 'Flowers'
     fill_in 'Type of art', with: 'Printmaking'
+    select '2017', from: 'Year'
     attach_file 'Image', 'public/img/flowerspainting.jpg'
     click_button 'Upload Art Piece'
     expect(page).to have_css("img[src*='flowerspainting']")
@@ -53,12 +57,15 @@ feature 'admin' do
     log_in
     fill_in 'Title', with: 'Flowers'
     fill_in 'Type of art', with: 'Printmaking'
+    select '2017', from: 'Year'
     attach_file 'Image', 'public/img/flowerspainting.jpg'
     click_button 'Upload Art Piece'
     click_link 'delete'
     expect(page).to_not have_css("img[src*='flowerspainting']")
     expect(page).to_not have_content 'Flowers'
   end
+
+  
 
   it 'sends a mail invitation to become administrator' do
     create_user

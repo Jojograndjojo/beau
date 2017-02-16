@@ -2,7 +2,7 @@ class ArtpiecesController < ApplicationController
 
   def create
     @artpiece = Artpiece.new(artpiece_params)
-    @artpiece.save
+    @artpiece.save!
     redirect_to admins_path
   end
 
@@ -26,6 +26,6 @@ class ArtpiecesController < ApplicationController
   private
 
   def artpiece_params
-    params.require(:artpiece).permit(:image, :title, :type_of_art)
+    params.require(:artpiece).permit(:image, :title, :type_of_art, :year)
   end
 end

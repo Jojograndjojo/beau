@@ -64,7 +64,9 @@
 
         <div class="col-lg-9 col-md-9 col-s-2 offset-lg-1 offset-md-1 offset-s-1">
           <div class="artpieces" id="artistname">
-            <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
+            <% if @homepage_picture != nil %>
+              <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
+            <% end %>
           </div>
 
           <div class="artpieces" id="paintings" style="display:none">
@@ -92,22 +94,19 @@
       </div>
     </div>
 
-    
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <script>
       var buttonClass;
-      $(document).ready(function(){
-
+      $(document).ready(function() {
         $("button").click(function() {
           $(".artpieces").hide(1000);
           buttonClass = $(this).attr("class");
           $("#" + buttonClass).show(1100);
         });
-
-
       });
     </script>
   </body>
