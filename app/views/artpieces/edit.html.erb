@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+      .form-inline {
+        border: 1px solid grey;
+        border-radius: 5px;
+        background-color: #d9d9db;
+      }
+      .col-lg-3, .col-md-4, .col-xs-6 {
+        border: 1px solid black;
+      }
+
+      .artName {
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+    <title> <%= @artpiece.title %></title>
+  </head>
+  <body>
+
+    <datalist id='types'>
+      <option  value='Drawing'>
+      <option  value='Painting'>
+      <option  value='Printmaking'>
+    </datalist><br>
+
+    <%= form_for @artpiece, url: { action: 'update'} do |form| %>
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, required: 'true', value: @artpiece.title %><br>
+      </div>
+      <div class="form-group">
+        <%= form.label :type_of_art %>
+        <%= form.text_field :type_of_art, list: 'types', required: 'true', value: @artpiece.type_of_art %><br>
+      </div>
+      <div class="form-group">
+        <%= form.label :year %>
+        <%= form.select :year, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), selected: @artpiece.year %>
+      </div>
+      <%= form.hidden_field :id, value: @artpiece.id %>
+      <%= form.button :submit, value: 'Update', class:"btn btn-default" %>
+    <% end %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>

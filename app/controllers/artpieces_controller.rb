@@ -7,7 +7,17 @@ class ArtpiecesController < ApplicationController
   end
 
   def destroy
-    @artpiece = Artpiece.find(params[:id]).destroy
+    Artpiece.find(params[:id]).destroy
+    redirect_to admins_path
+  end
+
+  def edit
+    @artpiece = Artpiece.find(params[:id])
+  end
+
+  def update
+    @artpiece = Artpiece.find(params[:artpiece][:id])
+    @artpiece.update(artpiece_params)
     redirect_to admins_path
   end
 
