@@ -65,7 +65,23 @@ feature 'admin' do
     expect(page).to_not have_content 'Flowers'
   end
 
-  
+  it 'can update artpieces' do
+    create_user
+    log_in
+    fill_in 'Title', with: 'Flowers'
+    fill_in 'Type of art', with: 'Printmaking'
+    select '2017', from: 'Year'
+    attach_file 'Image', 'public/img/flowerspainting.jpg'
+    click_button 'Upload Art Piece'
+    click_link 'update'
+    fill_in 'Title', with: 'Fleurs'
+    fill_in 'Type of art', with: 'Painting'
+    select '2016', from: 'Year'
+    click_button 'Update'
+    expect(Artpiece.all.first.title).to eq 'Fleurs'
+    expect(Artpiece.all.first.type_of_art).to eq 'Painting'
+    expect(Artpiece.all.first.year).to eq '2016'
+  end
 
   it 'sends a mail invitation to become administrator' do
     create_user
