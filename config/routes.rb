@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get '/drawings', to:'artpieces#drawings'
     get '/paintings', to:'artpieces#paintings'
     get '/printmakings', to:'artpieces#printmakings'
+    post '/update_homepage_picture', to: 'artpieces#update_homepage_picture'
   end
 
   root to: 'homepages#index'
