@@ -83,6 +83,19 @@ feature 'admin' do
     expect(Artpiece.all.first.year).to eq '2016'
   end
 
+  it 'can pick the homepage picture' do
+    create_user
+    log_in
+    fill_in 'Title', with: 'Flowers'
+    fill_in 'Type of art', with: 'Printmaking'
+    select '2017', from: 'Year'
+    attach_file 'Image', 'public/img/flowerspainting.jpg'
+    click_button 'Upload Art Piece'
+    click_button 'homepage picture'
+    visit '/'
+    expect(page).to have_css("img[src*='flowerspainting']")
+  end
+
   it 'sends a mail invitation to become administrator' do
     create_user
     log_in

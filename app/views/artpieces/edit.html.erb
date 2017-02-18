@@ -44,7 +44,9 @@
       </div>
       <%= form.hidden_field :id, value: @artpiece.id %>
       <%= form.button :submit, value: 'Update', class:"btn btn-default" %>
-    <% end %>
+    <% end %><br>
+§
+    <%= image_tag @artpiece.image.url(:medium), class: 'image' %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

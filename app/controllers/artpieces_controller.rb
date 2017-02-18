@@ -33,6 +33,13 @@ class ArtpiecesController < ApplicationController
     @printmakings = Artpiece.where(type_of_art: 'Printmaking')
   end
 
+  def update_homepage_picture
+    Artpiece.all.update_all(homepage_picture: false)
+    @artpiece = Artpiece.find(params[:id])
+    @artpiece.update_columns(homepage_picture: true)
+    redirect_to admins_path
+  end
+
   private
 
   def artpiece_params
