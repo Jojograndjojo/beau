@@ -18,6 +18,10 @@
         text-align: center;
         font-weight: bold;
       }
+
+      .about_file {
+        padding-bottom: 10px;
+      }
     </style>
     <title>Admin Page</title>
   </head>
@@ -32,8 +36,8 @@
         <option  value='Printmaking'>
       </datalist><br>
 
-
         <%= form_for @artpiece do |form| %>
+          <h3>Add Picture</h3>
           <div class="form-group">
             <%= form.label :title %>
             <%= form.text_field :title, required: 'true' %><br>
@@ -59,7 +63,7 @@
           <div class="col-lg-4 col-md-4 col-s-4 col-xs-4">
             <div class='artName'>
               <% if artType.size > 0 %>
-              <%= artType.first.type_of_art %>
+                <%= artType.first.type_of_art %>
               <% end %>
             </div>
 
@@ -78,6 +82,24 @@
           </div>
         <% end %>
       </div>
+
+      <div class='about_file'>
+        <% if @abouts.size > 0 %>
+        <a href="/abouts/<%= @about.id %>/edit">Update About file</a>
+        <% else %>
+        <%= form_for @about do |form| %>
+        <h3>Create About File</h3>
+        <div class='form-group'>
+          <%= form.label :content %>
+          <%= form.text_area :content %>
+        </div>
+        <%= form.button :submit, value:'Create About file', class: 'btn btn-default' %>
+        <% end %>
+        <% end %>
+      </div>
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

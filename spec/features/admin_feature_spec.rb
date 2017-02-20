@@ -96,6 +96,30 @@ feature 'admin' do
     expect(page).to have_css("img[src*='flowerspainting']")
   end
 
+  it 'displays about file' do
+    create_user
+    log_in
+    fill_in 'Content', with: 'Hello world'
+    click_button 'Create About file'
+    visit '/abouts'
+    expect(page).to have_content 'Hello world'
+    expect(page).not_to have_content 'Edit About file'
+  end
+
+  it 'updates about file' do
+    create_user
+    log_in
+    fill_in 'Content', with: 'Hello world'
+    click_button 'Create About file'
+    expect(page).not_to have_content 'Create About file'
+    visit '/admins'
+    click_on 'Update About file'
+    fill_in 'Content', with: 'wazzzup'
+    click_button 'Update About'
+    visit '/abouts'
+    expect(page).to have_content 'wazzzup'
+  end
+
   it 'sends a mail invitation to become administrator' do
     create_user
     log_in
@@ -104,6 +128,8 @@ feature 'admin' do
     fill_in 'Email', with: 'j_passe@live.fr'
     click_button 'Send invitation'
   end
+
+
 
 
 end
