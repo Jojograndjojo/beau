@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :abouts
   resource :homepage, :users do
   end
 

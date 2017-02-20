@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
 
   before_action :authorize
+  before_action :set_about, only: [:show]
 
   def show
     @artpiece = Artpiece.new
@@ -19,4 +20,16 @@ class AdminsController < ApplicationController
     email = params[:email]
     UserMailer::invitation_email(name,email).deliver
   end
+
+  private
+
+  def set_about
+    @abouts = About.all
+    if @abouts.size > 0
+      @about = About.all.last
+    else
+      @about = About.new
+    end
+  end
+
 end
