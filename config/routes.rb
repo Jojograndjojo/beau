@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :abouts
-  resource :homepage, :users do
+
+  resource :homepage, :abouts do
+  end
+
+  resource :users do
+    get '/add_user', to: 'users#add_user'
+    post '/send_invitation', to: 'users#send_invitation'
   end
 
   resource :admins do
@@ -8,7 +13,6 @@ Rails.application.routes.draw do
     post '/login', to: 'sessions#create'
     get '/logout', to: 'sessions#destroy'
     get '/management', to: 'admins#management'
-    post '/send_invitation', to: 'admins#send_invitation'
   end
 
   resource :artpieces do

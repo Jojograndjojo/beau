@@ -15,12 +15,6 @@ class AdminsController < ApplicationController
     @users = User.all
   end
 
-  def send_invitation
-    name = params[:name]
-    email = params[:email]
-    UserMailer::invitation_email(name,email).deliver
-  end
-
   private
 
   def set_about

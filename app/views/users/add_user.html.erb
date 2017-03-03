@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class='user_form'>
+      <%= form_for :user, url: '/users/send_invitation' do |form| %>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+      <%= form.submit 'Submit' %>
+      <% end %>
+    </div>
+
+  </body>
+</html>

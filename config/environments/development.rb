@@ -26,6 +26,16 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: "smtp.mailgun.org",
+    port: 587,
+    domain: "noreply.beaurouse.com",
+    user_name: "postmaster@noreply.beaurouse.com",
+    password: "8182996da336427a98340bbe6535f8f2"
+  }
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

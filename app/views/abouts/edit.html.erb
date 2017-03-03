@@ -1,6 +1,17 @@
-<h1>Editing About</h1>
-
-<%= render 'form', about: @about %>
-
-<%= link_to 'Show', @about %> |
-<%= link_to 'Back', abouts_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <%= form_for @about, url: { action: 'update'} do |form| %>
+      <h3>Edit About File</h3>
+      <div class='form-group'>
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+      </div>
+      <%= form.button :submit, value:'Update About file', class: 'btn btn-default' %>
+    <% end %>
+  </body>
+</html>

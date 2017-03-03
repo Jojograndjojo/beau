@@ -1,5 +1,5 @@
 class AboutsController < ApplicationController
-  before_action :set_about, only: [:show, :edit, :update, :destroy]
+  before_action :set_about, only: [:show, :update, :destroy]
 
   def index
     @about = About.all.last
@@ -9,6 +9,7 @@ class AboutsController < ApplicationController
   end
 
   def edit
+    @about = About.all.last
   end
 
   def create
@@ -16,7 +17,7 @@ class AboutsController < ApplicationController
 
     respond_to do |format|
       if @about.save
-        format.html { redirect_to @about, notice: 'About was successfully created.' }
+        format.html { redirect_to '/admins', notice: 'About was successfully created.' }
         format.json { render :show, status: :created, location: @about }
       else
         format.html { render :new }
@@ -27,15 +28,8 @@ class AboutsController < ApplicationController
 
 
   def update
-    respond_to do |format|
-      if @about.update(about_params)
-        format.html { redirect_to @about, notice: 'About was successfully updated.' }
-        format.json { render :show, status: :ok, location: @about }
-      else
-        format.html { render :edit }
-        format.json { render json: @about.errors, status: :unprocessable_entity }
-      end
-    end
+    @about = About.all.last
+    @about.update(about_params)
   end
 
 
@@ -56,7 +50,7 @@ class AboutsController < ApplicationController
   private
 
     def set_about
-      @about = About.find(params[:id])
+      @about = About.all.last
     end
 
     def about_params
