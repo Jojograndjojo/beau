@@ -8,10 +8,6 @@
 
     <title>Beau Rouse</title>
     <style media="screen">
-    .container {
-      padding-top: 10px;
-      max-height: 100%;
-    }
 
     .img-responsive {
       margin:auto;
@@ -55,15 +51,22 @@
     .about:hover {
       color: #444;
     }
+
+    .cont {
+      width: 100% !important;
+      margin-top: 10px;
+      margin-left: 0px;
+    }
+
     </style>
 
   </head>
   <body>
 
-    <div class="container">
+    <div class="cont" style="float: left;">
       <div class="row">
 
-        <div class="col-lg-2 col-md-2 col-s-2">
+        <div class="col-md-1 col-sm-4 col-xs-4">
           <div class="sidebar-wrapper">
             <ul class="sidebar-nav">
               <li><button class="artistname">Beau Rouse</button></li>
@@ -75,7 +78,7 @@
           </div>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-s-2 offset-lg-1 offset-md-1 offset-s-1">
+        <div class="col-md-11 col-sm-8 col-xs-8">
           <div class="artpieces" id="artistname">
             <% if @homepage_picture != nil %>
               <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
@@ -110,7 +113,9 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 
     <script>
       var buttonClass;
