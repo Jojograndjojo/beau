@@ -129,6 +129,20 @@ feature 'admin' do
     click_button 'Send invitation'
   end
 
+  it 'prompts first user to become admin' do
+    visit '/admins'
+    fill_in 'Username', with: 'rob'
+    fill_in 'Password', with: '1234'
+    fill_in 'Password confirmation', with: '1234'
+    click_button 'Submit'
+    expect(User.all.size).to eq 1
+  end
+
+  it 'doesn\'t prompt the user to become admin if a user exist' do
+    create_user
+    visit '/admins'
+    expect(page).not_to have_content 'Password confirmation'
+  end
 
 
 
