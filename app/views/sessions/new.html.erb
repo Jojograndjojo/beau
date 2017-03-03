@@ -19,13 +19,27 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <%= form_tag login_admins_path, html: {class:"form-horizontal"} do %>
-         <%= text_field_tag :username, placeholder="Username"%>
-         <%= password_field_tag :password, placeholder="Password" %>
+    <% if User.all.size == 0 %>
+      <div class='user_form'>
+        <%= form_for :user, url: '/users' do |form| %>
+        <%= form.label :username %>
+        <%= form.text_field :username %>
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation %>
+        <%= form.submit 'Submit' %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="container">
+        <%= form_tag login_admins_path, html: {class:"form-horizontal"} do %>
+        <%= text_field_tag :username, placeholder="Username"%>
+        <%= password_field_tag :password, placeholder="Password" %>
         <%= submit_tag 'Log in', class:"btn btn-default" %>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
