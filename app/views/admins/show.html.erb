@@ -28,7 +28,7 @@
   <body>
     <div class="container">
       <%= link_to 'Admin management', management_admins_path, class: 'btn btn-info' %>
-      <%= link_to 'Add a new admin', new_users_path, class: 'btn btn-info' %><br>
+      <%= link_to 'Add a new admin', add_user_users_path, class: 'btn btn-info' %><br>
 
       <datalist id='types'>
         <option  value='Drawing'>
@@ -85,16 +85,16 @@
 
       <div class='about_file'>
         <% if @abouts.size > 0 %>
-        <a href="/abouts/<%= @about.id %>/edit">Update About file</a>
+          <a href="/abouts/edit">Update About file</a>
         <% else %>
-        <%= form_for @about do |form| %>
-        <h3>Create About File</h3>
-        <div class='form-group'>
-          <%= form.label :content %>
-          <%= form.text_area :content %>
-        </div>
-        <%= form.button :submit, value:'Create About file', class: 'btn btn-default' %>
-        <% end %>
+          <%= form_for @about do |form| %>
+          <h3>Create About File</h3>
+          <div class='form-group'>
+            <%= form.label :content %>
+            <%= form.text_area :content %>
+          </div>
+          <%= form.button :submit, value:'Create About file', class: 'btn btn-default' %>
+          <% end %>
         <% end %>
       </div>
 

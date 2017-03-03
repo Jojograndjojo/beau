@@ -4,6 +4,6 @@ class UserMailer < ApplicationMailer
   def invitation_email(name,email)
     @url = 'http://beau.com'
     @name = name
-    mail(to: email, subject: 'Admin invitation')
+    mail(to: email, subject: 'Success you did it')
   end
 end

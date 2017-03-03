@@ -10,15 +10,15 @@
     </style>
   </head>
   <body>
-    <div class='container'>
-      <div class="jumbotron">
-        <%= @about.content %><br>
+    <% if @about != nil %>
+      <div class='container'>
+        <div class="jumbotron">
+            <%= simple_format(@about.content)%>
+        </div>
       </div>
-    </div>
-
-
-    <%= link_to 'Edit', edit_about_path(@about) %> |
-    <%= link_to 'Back', abouts_path %>
+      <%= link_to 'Edit', edit_abouts_path %>
+    <% end %>
+    <%= link_to 'Back', admins_path %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

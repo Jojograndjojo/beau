@@ -32,7 +32,9 @@
     <div class='container'>
       <a href='/' class='artistname'>Beau Rouse</a>
       <div class='jumbotron'>
-        <%= simple_format(@about.content)%>
+        <% if @about != nil %>
+          <%= simple_format(@about.content)%>
+        <% end %>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

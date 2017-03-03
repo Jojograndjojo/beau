@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'admin' do
 
-  it 'has link to an add admin page' do
+  xit 'has link to an add admin page' do
     create_user
     log_in
     click_link 'Add a new admin'
