@@ -7,7 +7,7 @@
     <style media="screen">
 
       .artistname {
-        font-size: 14px;
+        font-size: 20px;
         font-weight: bold;
         color: black;
         background:none;
@@ -25,13 +25,17 @@
         background-color: white;
       }
 
+      .glyphicon {
+          font-size: 30px;
+      }
+
     </style>
     <title></title>
   </head>
   <body>
     <div class='container'>
-      <a href='/' class='artistname'>Beau Rouse</a>
-      <% if About.all.size < 0%>
+      <a href='/' class='artistname'><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+      <% if About.all.size > 0%>
         <div class='jumbotron'>
           <%= simple_format(@about.content)%>
         </div>
