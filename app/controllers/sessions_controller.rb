@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.where(username: params[:username]).first
-    if user && user.authenticate(params[:password]) 
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to admins_path
     else
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_admins_path
+    redirect_to '/'
   end
 
 end
