@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219194328) do
+ActiveRecord::Schema.define(version: 20170305164011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170219194328) do
     t.string   "type_of_art"
     t.string   "year"
     t.boolean  "homepage_picture"
+    t.integer  "order"
   end
 
   create_table "users", force: :cascade do |t|

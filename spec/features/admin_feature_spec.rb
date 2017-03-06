@@ -144,6 +144,23 @@ feature 'admin' do
     expect(page).not_to have_content 'Password confirmation'
   end
 
+  it 'reorders artpieces' do
+    create_user
+    log_in
+    fill_in 'Title', with: 'Flowers'
+    fill_in 'Type of art', with: 'Printmaking'
+    select '2017', from: 'Year'
+    attach_file 'Image', 'public/img/flowerspainting.jpg'
+    click_button 'Upload Art Piece'
+    fill_in 'Title', with: 'Flowers2'
+    fill_in 'Type of art', with: 'Printmaking'
+    select '2017', from: 'Year'
+    attach_file 'Image', 'public/img/flowerspainting.jpg'
+    click_button 'Upload Art Piece'
+    click_on 'chevron down Flowers'
+    expect(Artpiece.all.first.order).to eq 2
+  end
+
 
 
 end

@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   end
 
   resource :artpieces do
-    get '/drawings', to:'artpieces#drawings'
-    get '/paintings', to:'artpieces#paintings'
-    get '/printmakings', to:'artpieces#printmakings'
     post '/update_homepage_picture', to: 'artpieces#update_homepage_picture'
+    post '/move_up', to: 'artpieces#move_up'
+    post '/move_down', to: 'artpieces#move_down'
   end
 
   root to: 'homepages#index'

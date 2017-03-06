@@ -70,52 +70,39 @@
           <div class="sidebar-wrapper">
             <ul class="sidebar-nav">
               <li><button class="artistname">Beau Rouse</button></li>
-              <li><button  class="paintings">Paintings</button></li>
-              <li><button  class="drawings">Drawings</button></li>
-              <li><button  class="printmakings">Printmaking</button></li>
+              <li><button  class="Painting">Paintings</button></li>
+              <li><button  class="Drawing">Drawings</button></li>
+              <li><button  class="Printmaking">Printmaking</button></li>
               <li><a href='/abouts' class="about">About</a></li>
             </ul>
           </div>
         </div>
 
         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8">
+
           <div class="artpieces" id="artistname">
             <% if @homepage_picture != nil %>
               <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
             <% end %>
           </div>
 
-          <div class="artpieces" id="paintings" style="display:none">
-            <% @paintings.each do |painting| %>
-              <%= image_tag painting.image.url, class: 'img-responsive' %>
-              <p class="art_title"><%= painting.title %></p>
-            <% end %>
-          </div>
+          <% @artTypes.each do |artType|%>
+            <div class='artpieces' id="<%= artType.first.type_of_art %>" >
+              <% artType.each do |piece_of_art| %>
+                <%= image_tag piece_of_art.image.url, class: 'img-responsive' %>
+                <p class="art_title"><%= piece_of_art.title %></p>
+              <% end %>
+            </div>
+          <% end %>
 
-          <div class="artpieces" id="drawings" style="display:none">
-            <% @drawings.each do |drawing| %>
-              <%= image_tag drawing.image.url, class: 'img-responsive' %>
-              <p class="art_title"><%= drawing.title %></p>
-            <% end %>
-          </div>
-
-          <div class="artpieces" id="printmakings" style="display:none">
-            <% @printmakings.each do |printmaking| %>
-              <%= image_tag printmaking.image.url, class: 'img-responsive' %>
-              <p class="art_title"><%= printmaking.title %></p>
-            <% end %>
-          </div>
         </div>
 
       </div>
     </div>
 
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
 
     <script>
       var buttonClass;
