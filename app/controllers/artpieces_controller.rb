@@ -2,6 +2,7 @@ class ArtpiecesController < ApplicationController
 
   def create
     @artpiece = Artpiece.new(artpiece_params)
+    set_order(@artpiece)
     @artpiece.save!
     redirect_to admins_path
   end
@@ -21,16 +22,26 @@ class ArtpiecesController < ApplicationController
     redirect_to admins_path
   end
 
-  def drawings
-    @drawings = Artpiece.where(type_of_art: 'Drawing')
+  def move_up
+    @artpiece = Artpiece.find(params[:id])
+    current_order = @artpiece.order
+
+    if @artpiece.order > 1
+      Artpiece.where(type_of_art: @artpiece.type_of_art, order: (current_order - 1)).first.update_columns(order: current_order)
+      @artpiece.update_columns(order:(current_order - 1))
+    end
+    redirect_to admins_path
   end
 
-  def paintings
-    @paintings = Artpiece.where(type_of_art: 'Painting')
-  end
+  def move_down
+    @artpiece = Artpiece.find(params[:id])
+    current_order = @artpiece.order
 
-  def printmakings
-    @printmakings = Artpiece.where(type_of_art: 'Printmaking')
+    unless Artpiece.where(type_of_art: @artpiece.type_of_art, order: current_order + 1).empty?
+      Artpiece.where(type_of_art: @artpiece.type_of_art, order: current_order + 1).first.update_columns(order: current_order)
+      @artpiece.update_columns(order: (current_order + 1))
+    end
+    redirect_to admins_path
   end
 
   def update_homepage_picture
@@ -45,4 +56,13 @@ class ArtpiecesController < ApplicationController
   def artpiece_params
     params.require(:artpiece).permit(:image, :title, :type_of_art, :year)
   end
+
+  def set_order(artpiece)
+    if Artpiece.where(type_of_art: artpiece.type_of_art).empty?
+      artpiece.order = 1
+    else
+      artpiece.order = Artpiece.where(type_of_art: artpiece.type_of_art).last.order + 1
+    end
+  end
+
 end

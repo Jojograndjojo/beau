@@ -2,13 +2,10 @@ class AdminsController < ApplicationController
 
   before_action :authorize
   before_action :set_about, only: [:show]
+  before_action :set_artTypes, only: [:show]
 
   def show
     @artpiece = Artpiece.new
-    @drawings = Artpiece.where(type_of_art: 'Drawing')
-    @paintings = Artpiece.where(type_of_art: 'Painting')
-    @printmakings = Artpiece.where(type_of_art: 'Printmaking')
-    @artTypes = [@drawings,@paintings,@printmakings]
   end
 
   def management
@@ -30,6 +27,23 @@ class AdminsController < ApplicationController
     else
       @about = About.new
     end
+  end
+
+  def set_artTypes
+    @artTypes = []
+    @artTitles = []
+
+    Artpiece.all.each do |artpiece|
+      unless @artTitles.include?(artpiece.type_of_art)
+        @artTitles << artpiece.type_of_art
+      end
+      @artTitles.sort!
+    end
+
+    @artTitles.each do |artTitle|
+      @artTypes << Artpiece.where(type_of_art: artTitle).order(:order)
+    end
+
   end
 
 end
