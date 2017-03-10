@@ -80,11 +80,11 @@
 
         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8">
 
-          <!-- <div class="artpieces" id="artistname">
+          <div class="artpieces" id="artistname">
             <% if @homepage_picture != nil %>
               <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
             <% end %>
-          </div> -->
+          </div>
 
           <% @artTypes.each do |artType|%>
             <div class='artpieces' id="<%= artType.first.type_of_art%>" style="display:none" >
@@ -100,39 +100,35 @@
 
 
       <div class='container'>
-        <div id="myCarousel" class="carousel" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel"></li>
-            <li data-target="#myCarousel"></li>
-            <li data-target="#myCarousel"></li>
-            <li data-target="#myCarousel"></li>
-          </ol>
+        <% @artTypes.each do |artType| %>
+          <div id="myCarousel" class="carousel" data-ride="carousel">
 
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
 
-            <div class="item active">
-              <%= image_tag @artTypes.first.first.image.url %>
+              <div class="item active">
+                <%= image_tag artType.first.image.url %>
+              </div>
+
+              <% artType.each do |artpiece| %>
+                <div class="item">
+                  <%= image_tag artpiece.image.url %>
+                </div>
+              <% end %>
             </div>
 
-            <div class="item">
-              <%= image_tag @artTypes.first.last.image.url %>
-            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
 
-
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-
-          <!-- Left and right controls -->
-          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
+        <% end %>
       </div>
 
 
@@ -150,18 +146,6 @@
           buttonClass = $(this).attr("class");
           $("#" + buttonClass).show(1100);
         });
-      });
-
-      $(document).ready(function() {
-        $("img").click(function() {
-          $(".cont").hide(500);
-          $(".container").show(500);
-        });
-      });
-
-      $('.carousel').carousel ({
-        interval: 6000
-        interval: false
       });
     </script>
   </body>
