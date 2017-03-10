@@ -82,14 +82,14 @@
 
           <div class="artpieces" id="artistname">
             <% if @homepage_picture != nil %>
-              <%= image_tag @homepage_picture.image.url, class: "img-responsive" %>
+              <%= image_tag @homepage_picture.image.url, class: "img-responsive", id:"#{@homepage_picture.title}", type:"#{@homepage_picture.type_of_art}" %>
             <% end %>
           </div>
 
           <% @artTypes.each do |artType|%>
             <div class='artpieces' id="<%= artType.first.type_of_art%>" style="display:none" >
               <% artType.each do |piece_of_art| %>
-                <%= image_tag piece_of_art.image.url, class: 'img-responsive', id:"#{piece_of_art.title}" %>
+                <%= image_tag piece_of_art.image.url, class: 'img-responsive', id:piece_of_art.title, type:piece_of_art.type_of_art %>
                 <p class="art_title"><%= piece_of_art.title %></p>
               <% end %>
             </div>
@@ -99,40 +99,33 @@
     </div>
 
 
-      <div class='container'>
-        <% @artTypes.each do |artType| %>
-          <div id="myCarousel" class="carousel" data-ride="carousel">
+    <% @artTypes.each do |artType| %>
+      <div class="container" id="container<%= artType.first.type_of_art %>" style="display:none">
+        <div id="Carousel<%= artType.first.type_of_art %>" class="carousel" data-ride="carousel" data-wrap="false">
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
 
-              <div class="item active">
-                <%= image_tag artType.first.image.url %>
+            <% artType.each do |artpiece| %>
+              <div class="item" id="<%= artpiece.title %>Carousel">
+                <%= image_tag artpiece.image.url %>
               </div>
-
-              <% artType.each do |artpiece| %>
-                <div class="item">
-                  <%= image_tag artpiece.image.url %>
-                </div>
-              <% end %>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+            <% end %>
           </div>
-        <% end %>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#Carousel<%= artType.first.type_of_art %>" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="right carousel-control" href="#Carousel<%= artType.first.type_of_art %>" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
-
-
-
+    <% end %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -140,12 +133,26 @@
 
     <script>
       var buttonClass;
+      var title;
+      var type;
+
       $(document).ready(function() {
         $("button").click(function() {
           $(".artpieces").hide(1000);
           buttonClass = $(this).attr("class");
           $("#" + buttonClass).show(1100);
         });
+
+        $("img").click(function() {
+          $(".cont").hide(1000);
+          title = $(this).attr("id");
+          type = $(this).attr("type");
+
+          $("#" + title + "Carousel").removeClass("item").addClass("item active");
+          $("#container" + type).show(1100);
+        });
+
+        $('.carousel').carousel('pause');
       });
     </script>
   </body>
