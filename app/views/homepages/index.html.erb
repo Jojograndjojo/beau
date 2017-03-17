@@ -57,14 +57,33 @@
       margin-top: 10px;
       margin-left: 0px;
     }
+    .carousel {
+      padding-left: 15%;
+      padding-right: 15%;
+      padding-top: 10%;
+    }
 
     .carousel-indicators {
       color: grey;
       opacity: 0.5;
-
-      border: 1px solid grey;
-      border-radius: 5px;
     }
+
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img{
+      width: 100%;
+      margin: auto;
+      padding-top: 2%;
+      max-height: 400px !important;
+    }
+
+    .carousel-img {
+    }
+
+    .glyphicon {
+      color: #fff;
+    }
+
+
 
     </style>
 
@@ -114,22 +133,25 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
 
+
             <% artType.each do |artpiece| %>
+
+
               <div class="item" id="<%= artpiece.title.gsub(/\s+/, '') %>Carousel">
-                <%= image_tag artpiece.image.url %>
+                <%= image_tag artpiece.image.url, class:"carousel-img", style:"width: 100%;" %>
               </div>
             <% end %>
           </div>
 
+          <a class="pull-left" href="#Carousel" type="<%= artType.first.type_of_art %>">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          </a>
           <!-- Left and right controls -->
           <a class="left carousel-control" href="#Carousel<%= artType.first.type_of_art %>" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
 
-          <a class="carousel-indicators" href="#Carousel">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          </a>
 
           <a class="right carousel-control" href="#Carousel<%= artType.first.type_of_art %>" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
@@ -166,6 +188,11 @@
                 "background-color": "black"
             });
           $("#" + title + "Carousel").attr("class", "item active");
+        });
+
+        $(".glyphicon").click(function() {
+          $(".container").show(1000);
+
         });
 
         $('.carousel').carousel('pause');
