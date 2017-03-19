@@ -60,7 +60,8 @@
     .carousel {
       padding-left: 15%;
       padding-right: 15%;
-      padding-top: 10%;
+      padding-top: 5%;
+      padding-bottom: 15%;
     }
 
     .carousel-indicators {
@@ -83,7 +84,10 @@
       color: #fff;
     }
 
-
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
 
     </style>
 
@@ -128,6 +132,11 @@
 
     <% @artTypes.each do |artType| %>
       <div class="container" id="container<%= artType.first.type_of_art %>" style="display:none">
+        <div class="sidebar-wrapper">
+          <ul class="sidebar-nav">
+            <!-- <li><a href="/" class="artistnamecarousel"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li> -->
+          </ul>
+        </div>
         <div id="Carousel<%= artType.first.type_of_art %>" class="carousel" data-ride="carousel" data-wrap="false">
 
           <!-- Wrapper for slides -->
@@ -143,9 +152,6 @@
             <% end %>
           </div>
 
-          <a class="pull-left" href="#Carousel" type="<%= artType.first.type_of_art %>">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-          </a>
           <!-- Left and right controls -->
           <a class="left carousel-control" href="#Carousel<%= artType.first.type_of_art %>" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
