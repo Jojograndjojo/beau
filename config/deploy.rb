@@ -1,11 +1,9 @@
 # config valid only for current version of Capistrano
 lock "3.8.0"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
-
 set :application, "beau_rouse"
-set :repo_url, "https://github.com/Jojograndjojo/beau.git"
+set :repo_url, "git@github.com:Jojograndjojo/beau.git"
+  
 
 set :deploy_to, '/home/deploy/beau_rouse'
 
