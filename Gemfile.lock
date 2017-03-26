@@ -45,6 +45,7 @@ GEM
     autoprefixer-rails (6.7.2)
       execjs
     bcrypt (3.1.11)
+    bcrypt-ruby (3.0.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -132,6 +133,7 @@ GEM
       mimemagic (~> 0.3.0)
     pg (0.18.4)
     pkg-config (1.1.7)
+    psych (2.0.17)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -227,6 +229,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bcrypt-ruby (~> 3.0.0)
   bootstrap-sass
   byebug
   capistrano (~> 3.7, >= 3.7.1)
@@ -241,6 +244,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   paperclip (~> 5.0.0)
   pg (~> 0.18)
+  psych
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rspec-rails

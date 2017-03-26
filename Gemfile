@@ -27,9 +27,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'bcrypt-ruby', '~> 3.0.0', require: "bcrypt"
+
 gem 'paperclip', '~> 5.0.0'
 
 gem 'bootstrap-sass'
+
+gem 'psych'
 
 
 group :test do
